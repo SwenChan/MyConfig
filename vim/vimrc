@@ -1,0 +1,36 @@
+set nocompatible              " be iMproved, required
+set term=screen-256color
+filetype on                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+" let Vundle manage Vundle, required
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'git@github.com:davidhalter/jedi-vim.git'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'git@github.com:vim-scripts/Vim-R-plugin.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end() " required
+" let g:vim_markdown_fenced_languages = ['javascript=js']
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+filetype plugin indent on    " required
+
+autocmd FileType javascript set tabstop=2 | set shiftwidth=2 | set expandtab
+set incsearch               " 输入搜索内容时就显示搜索结果
+set backspace=indent,eol,start " 不设定在插入状态无法用退格键和 Delete 键删除回车符
+set autoread " Set to auto read when a file is changed from the outside
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
