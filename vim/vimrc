@@ -14,6 +14,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'git@github.com:vim-scripts/Vim-R-plugin.git'
+Plugin 'git@github.com:Valloric/YouCompleteMe.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end() " required
