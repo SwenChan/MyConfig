@@ -1,6 +1,7 @@
-set nocompatible              " be iMproved, required
+set nocompatible              " be iMproved, required 关闭vi的一致性模式 避免以前版本的一些Bug和局限
 set term=screen-256color
 filetype on                  " required
+<<<<<<< HEAD
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -24,10 +25,29 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 filetype plugin indent on    " required
 
+" call plug#begin('~/.vim/plugged')
+" 
+" Plug 'git@github.com:Valloric/YouCompleteMe.git'
+" Plug 'git@github.com:scrooloose/nerdtree.git', { 'on': 'NERDTreeToggle' }
+" Plug 'git@github.com:scrooloose/nerdcommenter.git'
+" Plug 'git@github.com:ctrlpvim/ctrlp.vim.git'
+" Plug 'git@github.com:pangloss/vim-javascript.git'
+" Plug 'git@github.com:mileszs/ack.vim.git'
+" Plug 'git@github.com:majutsushi/tagbar.git'
+" Plug 'git@github.com:vim-scripts/taglist.vim.git'
+" Plug 'git@github.com:HerringtonDarkholme/yats.vim.git'
+" " Plug 'git@github.com:ternjs/tern_for_vim.git' " tern for vim
+" 
+" call plug#end()
+
+
 autocmd FileType javascript set tabstop=2 | set shiftwidth=2 | set expandtab
+autocmd FileType sh set softtabstop=4
+
 set incsearch               " 输入搜索内容时就显示搜索结果
 set backspace=indent,eol,start " 不设定在插入状态无法用退格键和 Delete 键删除回车符
 set autoread " Set to auto read when a file is changed from the outside
+set wildmenu " 设置vim自身命令行自动补全
 
 " Linebreak on 500 characters
 set lbr
@@ -35,3 +55,54 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
+set nu
+
+nmap <F10> :NERDTreeToggle<CR>
+nmap <F9> :set hls!<BAR>set hls?<CR> " 搜索高亮开关
+
+"设置取消备份 禁止临时文件生成
+set nobackup
+set noswapfile
+
+" ctrlp ignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+""""""""""""""""""""""""""""""""""""""""""
+"""""  注释插件配置  """""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" tagbar 插件配置
+" nmap <F8> :TagbarToggle<CR>
+
+" 折叠
+set foldmethod=syntax
+set nofoldenable
+
+" 禁止光标闪烁
+set gcr=a:block-blinkon0
+
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+
+set timeout ttimeoutlen=50
+
+nnoremap 1 1gt
+nnoremap 2 2gt
+nnoremap 3 3gt
+nnoremap 4 4gt
+nnoremap 5 5gt
+nnoremap 6 6gt
+nnoremap 7 7gt
+nnoremap 8 8gt
+nnoremap 9 9gt
+nnoremap  :tabp<CR>
+nnoremap  :tabn<CR>
+nnoremap 0 :tablast<CR>
+
+" map <Esc>[1;9D :tabn<CR>
