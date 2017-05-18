@@ -53,7 +53,7 @@ plugins=(git docker)
 
 # User configuration
 
-  export PATH="/opt/node/bin:/home/Swen/npm-global/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/Swen/.local/bin:/home/Swen/bin"
+  export PATH="/opt/go/bin:/opt/node/bin:/home/Swen/npm-global/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/Swen/.local/bin:/home/Swen/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh

@@ -12,7 +12,12 @@ Plug 'git@github.com:pangloss/vim-javascript.git'
 Plug 'git@github.com:mileszs/ack.vim.git'
 Plug 'git@github.com:majutsushi/tagbar.git'
 Plug 'git@github.com:vim-scripts/taglist.vim.git'
-Plug 'git@github.com:HerringtonDarkholme/yats.vim.git'
+Plug 'git@github.com:HerringtonDarkholme/yats.vim.git' " typescript plugin
+Plug 'git@github.com:powerline/powerline.git'
+Plug 'git@github.com:vim-airline/vim-airline.git'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'git@github.com:terryma/vim-multiple-cursors.git'
+Plug 'ekalinin/Dockerfile.vim'
 " Plug 'git@github.com:ternjs/tern_for_vim.git' " tern for vim
 
 call plug#end()
@@ -41,6 +46,9 @@ nmap <F9> :set hls!<BAR>set hls?<CR> " 搜索高亮开关
 set nobackup
 set noswapfile
 
+" airline plugin
+let g:airline#extensions#tabline#enabled = 1
+
 " ctrlp ignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
@@ -57,8 +65,16 @@ let g:NERDSpaceDelims = 1
 set foldmethod=syntax
 set nofoldenable
 
+" 光标设置
 " 禁止光标闪烁
 set gcr=a:block-blinkon0
+" 设置光标行列高亮
+set cursorcolumn
+set cursorline
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
+" highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
+" highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
 let c='a'
 while c <= 'z'
@@ -68,6 +84,16 @@ while c <= 'z'
 endw
 
 set timeout ttimeoutlen=50
+
+" 颜色配置
+" let g:molokai_original = 1
+set laststatus=2
+" let g:airline_theme='dark theme with powerline symbols'
+
+" 多光标设置
+let g:multi_cursor_prev_key='<C-b>'
+
+" 键位映射
 
 nnoremap 1 1gt
 nnoremap 2 2gt
