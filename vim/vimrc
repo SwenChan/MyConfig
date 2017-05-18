@@ -22,7 +22,6 @@ Plug 'ekalinin/Dockerfile.vim'
 
 call plug#end()
 
-
 autocmd FileType javascript set tabstop=2 | set shiftwidth=2 | set expandtab
 autocmd FileType sh set softtabstop=4
 
