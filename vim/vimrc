@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required 关闭vi的一致性模式 避免以前版本的一些Bug和局限
 set term=screen-256color
+set encoding=utf-8
 filetype on                  " required
 
 call plug#begin('~/.vim/plugged')
@@ -18,11 +19,22 @@ Plug 'git@github.com:vim-airline/vim-airline.git'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'git@github.com:terryma/vim-multiple-cursors.git'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'janko-m/vim-test'
+Plug 'git@github.com:tpope/vim-fugitive.git'
+Plug 'posva/vim-vue'
+Plug '/usr/local/opt/fzf'
+Plug 'git@github.com:SirVer/ultisnips.git'
+Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" http://www.panozzaj.com/blog/2015/08/28/must-have-vim-javascript-setup/
 " Plug 'git@github.com:ternjs/tern_for_vim.git' " tern for vim
 
 call plug#end()
 
 autocmd FileType javascript set tabstop=2 | set shiftwidth=2 | set expandtab
+autocmd FileType typescript set tabstop=2 | set shiftwidth=2 | set expandtab
+autocmd FileType cpp set tabstop=2 | set shiftwidth=2 | set expandtab
 autocmd FileType sh set softtabstop=4
 
 set incsearch               " 输入搜索内容时就显示搜索结果
@@ -70,9 +82,9 @@ set gcr=a:block-blinkon0
 " 设置光标行列高亮
 set cursorcolumn
 set cursorline
-highlight CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
+highlight CursorLine cterm=NONE ctermbg=241 ctermfg=NONE guibg=NONE guifg=NONE
 " highlight CursorLine   cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
-highlight CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=241 ctermfg=NONE guibg=NONE guifg=NONE
 " highlight CursorColumn cterm=NONE ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
 let c='a'
@@ -106,5 +118,37 @@ nnoremap 9 9gt
 nnoremap  :tabp<CR>
 nnoremap  :tabn<CR>
 nnoremap 0 :tablast<CR>
+nnoremap <F5> :checktime<CR>
+
+" visual 模式下选中一段文本并粘贴来实现替换 粘贴时不置换"剪贴板"
+xnoremap p pgvy
 
 " map <Esc>[1;9D :tabn<CR>
+"
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+
+" ag setting
+let g:ackprg = 'ag --vimgrep'
+
+"" Ultisnips
+let g:UltiSnipsExpandTrigger="<S-tab>"
+
+" 自动补全括号
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
+inoremap " ""<Esc>i
+
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" " better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
